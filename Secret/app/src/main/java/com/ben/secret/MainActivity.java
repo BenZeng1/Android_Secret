@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ben.secret.atys.AtyMessage;
+import com.ben.secret.atys.AtyPubMessage;
 
 /**
  *主Activity为入口根据相关规则跳转到不同Activity
@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         //界面跳转
         String token = Config.getCachedToken(this);
 
-        startActivity(new Intent(this, AtyMessage.class));
+        startActivity(new Intent(this, AtyPubMessage.class));
 
 //        if (token != null){
 //            Intent i = new Intent(this, AtyTimeline.class);
