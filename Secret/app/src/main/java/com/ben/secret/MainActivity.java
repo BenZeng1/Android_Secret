@@ -24,13 +24,15 @@ public class MainActivity extends Activity {
         String token = Config.getCachedToken(this);
         if (token != null){
             Intent i = new Intent(this, AtyTimeline.class);
-            i.putExtra(Config.KEY_TOKEN, token); //token传给Timeline用于其访问服务器接口
+
+            //send "token" in order that Timeline could commit with Server
+            i.putExtra(Config.KEY_TOKEN, token);
             startActivity(i);
         } else {
             startActivity(new Intent(this, AtyLogin.class));
         }
 
-
+        finish(); //back won't show MainActivity
     }
 
 
