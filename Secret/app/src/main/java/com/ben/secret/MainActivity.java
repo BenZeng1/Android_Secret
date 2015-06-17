@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ben.secret.atys.AtyLogin;
 import com.ben.secret.atys.AtyTimeline;
 
 /**
@@ -22,15 +21,18 @@ public class MainActivity extends Activity {
 
         //界面跳转
         String token = Config.getCachedToken(this);
-        if (token != null){
-            Intent i = new Intent(this, AtyTimeline.class);
 
-            //send "token" in order that Timeline could commit with Server
-            i.putExtra(Config.KEY_TOKEN, token);
-            startActivity(i);
-        } else {
-            startActivity(new Intent(this, AtyLogin.class));
-        }
+        startActivity(new Intent(this, AtyTimeline.class));
+
+//        if (token != null){
+//            Intent i = new Intent(this, AtyTimeline.class);
+//
+//            //send "token" in order that Timeline could commit with Server
+//            i.putExtra(Config.KEY_TOKEN, token);
+//            startActivity(i);
+//        } else {
+//            startActivity(new Intent(this, AtyLogin.class));
+//        }
 
         finish(); //back won't show MainActivity
     }
