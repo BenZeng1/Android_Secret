@@ -1,17 +1,43 @@
 package com.ben.secret;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.ben.secret.atys.AtyLogin;
+import com.ben.secret.atys.AtyTimeline;
+
+/**
+ *主Activity为入口根据相关规则跳转到不同Activity
+ * 1.跳转登陆页面：当前token没有，或过期
+ * 2.跳转到消息评论显示：token存在
+ */
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        //界面跳转
+        String token = Config.getCachedToken(this);
+        if (token != null){
+            Intent i = new Intent(this, AtyTimeline.class);
+            i.putExtra(Config.KEY_TOKEN, token); //token传给Timeline用于其访问服务器接口
+            startActivity(i);
+        } else {
+            startActivity(new Intent(this, AtyLogin.class));
+        }
+
+
     }
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
